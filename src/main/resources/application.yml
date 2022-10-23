@@ -1,0 +1,11 @@
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/finger?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: 19971126wh
+mybatis:
+    mapper-locations: classpath:mapper/*.xml
+
+
+

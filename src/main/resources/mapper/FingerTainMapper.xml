@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.knndemo.mapper.FingertrainMapper">
+
+
+
+    <select id="selectById" resultType="com.example.knndemo.model.FingerPrint">
+    select
+       id ,x, rssi1,y, rssi2, rssi3, rssi4, rssi5, rssi6, rssi7, rssi8, msg,k,distance from fingermap_train_v1 where id=#{id}
+    </select>
+
+
+    <select id="selectAll" resultType="com.example.knndemo.model.FingerPrint">
+        select * from  fingermap_train_v1
+    </select>
+
+    <select id="selectBetweenId" resultType="com.example.knndemo.model.FingerPrint">
+        select * from fingermap_train_v1 where id between #{left} and #{right}
+    </select>
+
+
+    <insert id="insertFingerPrint" parameterType="com.example.knndemo.model.FingerPrint">
+        insert into fingermap_train_v1
+            ( id,x,y,rssi1,rssi2,rssi3,rssi4,rssi5,rssi6,rssi7,rssi8,msg)
+            VALUES (#{id},#{x},#{y},#{rssi1},#{rssi2},#{rssi3},#{rssi4},#{rssi5},#{rssi6},#{rssi7},#{rssi8},#{msg})
+    </insert>
+
+    <insert id="insertFingerBatch" parameterType="com.example.knndemo.model.FingerPrint">
+        insert into fingermap_train_v1
+            ( id,x,y,rssi1,rssi2,rssi3,rssi4,rssi5,rssi6,rssi7,rssi8,msg)
+            VALUES
+      <foreach collection="list" index="index" item="item"  separator=","  >
+          (#{item.id},#{item.x},#{item.y},#{item.rssi1},#{item.rssi2},#{item.rssi3},#{item.rssi4},#{item.rssi5},#{item.rssi6},#{item.rssi7},#{item.rssi8},#{item.msg})
+      </foreach>
+    </insert>
+</mapper>
