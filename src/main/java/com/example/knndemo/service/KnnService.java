@@ -63,10 +63,14 @@ public class KnnService {
             sumDistance += neighbor.getDistanct();
         }
         System.out.println(" k  neighbors--------------------------------------------------------"  );
+        double kSum=0.0;
         for (FingerPrint neighbor : neighbors) {
-            neighbor.setWeight(neighbor.getDistanct() != 0 ? neighbor.getDistanct()/sumDistance : Double.MAX_VALUE);
-            System.out.println(neighbor);
+           kSum+=1/neighbor.getDistanct();
         }
+        for (FingerPrint neighbor : neighbors) {
+            neighbor.setWeight(1/ neighbor.getDistanct()/kSum);
+        }
+        "22".equals("");
         return neighbors;
 
     }
