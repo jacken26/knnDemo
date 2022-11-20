@@ -20,6 +20,8 @@ public class FingerPrint {
     private double distanct;
     private Integer k;
 
+    private double kmeansDistance;
+
     private double weight;
 
 
